@@ -11,7 +11,7 @@ namespace TakeIoLib.Entities
 
     public class Message
     {
-        public virtual Guid Id { get; set; }
+        public virtual Guid? Id { get; set; }
         public virtual Guid? Schedule { get; set; }
         public virtual Guid? Owner { get; set; }
         public virtual string Sender { get; set; }
@@ -35,20 +35,9 @@ namespace TakeIoLib.Entities
         public virtual string AudioBase64 { get; set; }
         public virtual bool? Async { get; set; }
         public virtual string SpecificId { get; set; }
-        public virtual Guid IdDomain { get; set; }
+        public virtual Guid? IdDomain { get; set; }
         public virtual string LargeAccount { get; set; }
         public virtual bool? Read { get; set; }
-
-        public Message()
-        {
-            Recipients = new List<RecipientsResource>();
-            ContactGroups = new List<ContactGroup>();
-        }
-
-        public Message(string content)
-        {
-
-        }
 
         public struct RecipientsResource
         {
@@ -58,7 +47,7 @@ namespace TakeIoLib.Entities
             public string Carrier { get; set; }
             public int? Duration { get; set; }
             public float? Price { get; set; }
-            public int Attempts { get; set; }
+            public int? Attempts { get; set; }
             public DateTime? Time { get; set; }
         }
 

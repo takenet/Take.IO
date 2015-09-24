@@ -50,13 +50,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Clients\RequestClientTest.cs" />
+    <Compile Include="Clients\MessagesClientTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TakeIoLib\TakeIoLib.csproj">
+    <ProjectReference Include="..\TakeIoLib\TakeIoClient.csproj">
       <Project>{d18c851e-8b57-44e3-860e-1ebdfb6ea428}</Project>
-      <Name>TakeIoLib</Name>
+      <Name>TakeIoClient</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
