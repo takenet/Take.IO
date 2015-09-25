@@ -19,7 +19,6 @@ namespace TakeIoLib.Clients
             _httpClient.Authenticator = OAuth1Authenticator.ForAccessToken(consumerKey, consumerSecret, requestToken, requestTokenSecret);
 
             Messages = new MessagesClient(_httpClient);
-            var response = Messages.ListMessages();
         }
     }
 }
