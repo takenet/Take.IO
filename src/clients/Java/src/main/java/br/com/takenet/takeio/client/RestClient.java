@@ -14,6 +14,8 @@ import org.glassfish.jersey.client.oauth1.AccessToken;
 import org.glassfish.jersey.client.oauth1.ConsumerCredentials;
 import org.glassfish.jersey.client.oauth1.OAuth1ClientSupport;
 import org.glassfish.jersey.jackson.JacksonFeature;
+import br.com.takenet.takeio.entities.Collection;
+import br.com.takenet.takeio.entities.Item;
 
 
 public class RestClient implements RestClientInterface {
@@ -39,7 +41,7 @@ public class RestClient implements RestClientInterface {
 	}
 
 	@Override
-	public <T> Response<T> get(Class<T> type, String path, List<String> parameters) {
+	public <T extends Collection<?>> Response<T> get(Class<T> type, String path, List<String> parameters) {
 		String url = BASE_URL + path;
 		if (parameters != null)
 			url = String.format("%s?%s", url, StringUtils.join(parameters, "&"));
@@ -54,7 +56,7 @@ public class RestClient implements RestClientInterface {
 	}
 	
 	@Override
-	public <T> Response<T> get(Class<T> type, String path, UUID guid) {
+	public <T extends Item<?>> Response<T> get(Class<T> type, String path, UUID guid) {
 		javax.ws.rs.core.Response resourceResponse = client.target(BASE_URL).path(path).path(guid.toString()).request().get();
 		Response<T> response = new Response<>();
 		response.setStatus(resourceResponse.getStatusInfo());
@@ -77,7 +79,7 @@ public class RestClient implements RestClientInterface {
 	}
 
 	@Override
-	public <T> Response<T> put(Class<T> type, String path, T entity, UUID guid) {
+	public <T extends Item<?>> Response<T> put(Class<T> type, String path, T entity, UUID guid) {
 		Entity<T> entityQuery = Entity.entity(entity, MediaType.APPLICATION_JSON);
 		WebTarget target = client.target(BASE_URL).path(path).path(guid.toString());
 		javax.ws.rs.core.Response resourceResponse = target.request(MediaType.APPLICATION_JSON).put(entityQuery);
