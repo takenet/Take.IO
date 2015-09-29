@@ -3,5 +3,3 @@ source "http://rubygems.org"
 gem 'her'
 gem 'faraday_middleware'
 gem 'simple_oauth'
-gem 'virtus'
-gem 'pry'

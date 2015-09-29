@@ -17,7 +17,7 @@ namespace TakeIoLibTest.Clients
         public void TestInitialize()
         {
             client = new RequestClient("t3KJh2b5", "fcPJ3TLi",
-                "7IwP+to8ES6PBjq2hact0X+h/YA=", "wovtEfTd8YS0P8woEP0S/nAV1g8=");
+                "RGbK6mR4rX9YQATm55ug9ytEsps=", "P5GBzPseaxFQycA/1i8Kfk9yqgA=");
         }
 
         [TestMethod]
