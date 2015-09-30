@@ -63,6 +63,9 @@ dlldata.c
 *.svclog
 *.scc
 
+src/clients/PHP/vendor
+src/clients/PHP/TakeIoClient/vendor
+
 # Chutzpah Test files
 _Chutzpah*
 
