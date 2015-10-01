@@ -23,8 +23,6 @@ module TakeIoClient
 
       # Adapter
       c.use Faraday::Adapter::NetHttp
-
-      c.proxy 'http://127.0.0.1:8888'
     end
 
     ENTITIES.each do |e|

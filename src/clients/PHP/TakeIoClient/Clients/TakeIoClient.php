@@ -28,8 +28,7 @@ class TakeIoClient
 
         $this->_httpClient = new Client([
             'base_uri' => 'http://api.take.io/rest/1.0/',
-            'handler' => $stack,
-            'proxy' => 'http://127.0.0.1:8888'
+            'handler' => $stack
         ]);
 
         $this->messages = new MessagesClient($this->_httpClient);
