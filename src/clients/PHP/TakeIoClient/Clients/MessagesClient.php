@@ -14,9 +14,11 @@ class MessagesClient
         $this->_httpClient = $_httpClient;
     }
 
-    public function listMessages()
+    public function listMessages($params)
     {
-        $response = $this->_httpClient->get(self::RESOURCE, ['auth' => 'oauth']);
+        $formatted_params = $this->format_params($params);
+        $response = $this->_httpClient->get(self::RESOURCE, ['auth' => 'oauth', 'query' => $formatted_params]);
+
         $parsed_response = json_decode($response->getBody());
 
         return array_map(function ($msg) {
@@ -67,5 +69,14 @@ class MessagesClient
         $parsed_response = json_decode($response->getBody());
 
         return new Message($parsed_response->entry);
+    }
+
+    private function format_params($params)
+    {
+        $arr = array_map(function($key, $val) {
+            return $key . '=' . json_encode($val);
+        }, array_keys($params), array_values($params));
+
+        return '?' . join('&', $arr);
     }
 }
