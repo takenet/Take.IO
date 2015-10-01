@@ -8,6 +8,11 @@ class TakeIoClient::Message
     :updated, :audioBase64, :async, :specificId, :idDomain, :largeAccount, :read, :location
 
   class << self
+    def where options
+      options = Hash[options.map {|key, val| [key, val.to_s]}]
+      super options
+    end
+
     def list_messages params
       all.where(params)
     end
