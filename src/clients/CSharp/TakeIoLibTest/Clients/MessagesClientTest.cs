@@ -16,8 +16,8 @@ namespace TakeIoLibTest.Clients
         [TestInitialize]
         public void TestInitialize()
         {
-            client = new RequestClient("t3KJh2b5", "fcPJ3TLi",
-                "RGbK6mR4rX9YQATm55ug9ytEsps=", "P5GBzPseaxFQycA/1i8Kfk9yqgA=");
+            client = new RequestClient("CONSUMER_KEY", "CONSUMER_SECRET",
+                "REQUEST_TOKEN", "REQUEST_TOKEN_SECRET");
         }
 
         [TestMethod]
@@ -33,7 +33,7 @@ namespace TakeIoLibTest.Clients
         [TestMethod]
         public void GetMessage()
         {
-            var response = client.Messages.GetMessage("f8db41a5-c32f-4e6a-bb83-eb23b73489e6");
+            var response = client.Messages.GetMessage("MESSAGE_GUID");
             Assert.AreEqual(response.Status, HttpStatusCode.OK);
         }
 
@@ -42,13 +42,13 @@ namespace TakeIoLibTest.Clients
         {
             var message = new Message()
             {
-                Sender = "tel:+553199888668",
+                Sender = "tel:+5531XXXXXXXX",
                 Body = "Hello, World!",
                 Recipients = new List<Message.RecipientsResource>
                 {
                     new Message.RecipientsResource()
                     {
-                        Value = "tel:+553199888668"
+                        Value = "tel:+5531XXXXXXXX"
                     }
                 }
             };
@@ -64,10 +64,10 @@ namespace TakeIoLibTest.Clients
             {
                 new Message.RecipientsResource()
                 {
-                    Value = "tel:+553199888668"
+                    Value = "tel:+5531XXXXXXXX"
                 }
             };
-            var response = client.Messages.SendMessage(recipients, "tel:+553199888668", "Hello, World!");
+            var response = client.Messages.SendMessage(recipients, "tel:+5531XXXXXXXX", "Hello, World!");
             Assert.AreEqual(response.Status, HttpStatusCode.Created);
         }
 
@@ -76,13 +76,13 @@ namespace TakeIoLibTest.Clients
         {
             var message = new Message()
             {
-                Sender = "tel:+553199888668",
+                Sender = "tel:+5531XXXXXXXX",
                 Body = "Hello, World!",
                 Recipients = new List<Message.RecipientsResource>
                 {
                     new Message.RecipientsResource()
                     {
-                        Value = "tel:+553199888668"
+                        Value = "tel:+5531XXXXXXXX"
                     }
                 }
             };
@@ -98,11 +98,11 @@ namespace TakeIoLibTest.Clients
             {
                 new Message.RecipientsResource()
                 {
-                    Value = "tel:+553199888668"
+                    Value = "tel:+5531XXXXXXXX"
                 }
             };
 
-            var response = client.Messages.SendSchedulledMessage(recipients, "tel:+553199988668", 
+            var response = client.Messages.SendSchedulledMessage(recipients, "tel:+5531XXXXXXXX", 
                 "Hello, World!", new DateTime(2015, 9, 24, 17, 6, 0));
             Assert.AreEqual(response.Status, HttpStatusCode.Created);
         }
@@ -115,7 +115,7 @@ namespace TakeIoLibTest.Clients
                 Urgent = true
             };
 
-            var response = client.Messages.UpdateMessage(message, "f8db41a5-c32f-4e6a-bb83-eb23b73489e6");
+            var response = client.Messages.UpdateMessage(message, "MESSAGE_GUID");
             Assert.AreEqual(response.Status, HttpStatusCode.OK);
         }
     }
