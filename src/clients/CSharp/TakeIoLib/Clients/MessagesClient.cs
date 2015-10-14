@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 using TakeIoLib.Entities.QueryHelpers;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Linq;
+using System.Configuration;
+using System.Collections.Specialized;
 
 namespace TakeIoLib.Clients
 {
@@ -15,10 +17,12 @@ namespace TakeIoLib.Clients
     {
         public const string RESOURCE = "messages";
         private RestClient _httpClient;
+        private NameValueCollection _appSettings;
 
         public MessagesClient(RestClient _httpClient)
         {
             this._httpClient = _httpClient;
+            this._appSettings = ConfigurationManager.AppSettings;
         }
 
         public Response<Collection<Message>> ListMessages(MessageParameters parameters = null)
@@ -42,6 +46,11 @@ namespace TakeIoLib.Clients
             var request = new RestRequest();
 
             message.Type = "sms";
+
+            if(_appSettings["TakeIoWalletId"] != null)
+            {
+                message.Wallet = Guid.Parse(_appSettings["TakeIoWalletId"]);
+            }            
 
             var item = new Item<Message>();
             item.Entry = message;
