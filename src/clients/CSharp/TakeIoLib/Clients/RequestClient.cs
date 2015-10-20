@@ -13,9 +13,9 @@ namespace TakeIoLib.Clients
         private RestClient _httpClient;
         public MessagesClient Messages { get; set; }
 
-        public RequestClient(string consumerKey, string consumerSecret, string requestToken, string requestTokenSecret)
+        public RequestClient(string apiUrl, string consumerKey, string consumerSecret, string requestToken, string requestTokenSecret)
         {    
-            _httpClient = new RestClient("http://api.take.io/rest/1.0");
+            _httpClient = new RestClient(apiUrl);
             _httpClient.Authenticator = OAuth1Authenticator.ForAccessToken(consumerKey, consumerSecret, requestToken, requestTokenSecret);
 
             Messages = new MessagesClient(_httpClient);
