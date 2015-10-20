@@ -23,9 +23,9 @@ namespace TakeIoLib.Clients
 
             var version = _appSettings["TakeIoApiVersion"] ?? "1.0";
             var host = _appSettings["TakeIoApiHost"] ?? "api.take.io";
-            var protocol = _appSettings["TakeIoApiProtocol"] ?? "https://";
+            var protocol = _appSettings["TakeIoApiProtocol"] ?? "https";
 
-            var uri = $"{protocol}{host}/rest/{version}";
+            var uri = $"{protocol}://{host}/rest/{version}";
 
             _httpClient = new RestClient(uri);
             _httpClient.Authenticator = OAuth1Authenticator.ForAccessToken(consumerKey, consumerSecret, requestToken, requestTokenSecret);
